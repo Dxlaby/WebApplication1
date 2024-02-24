@@ -3,26 +3,34 @@
 }
 @model List<Message>
 
-<div>
-    @foreach (Message message in Model)
-    {
-        <h6>
-            @message.Name
-        </h6>
-        <p>
-            @message.Text
-        </p>
-    }
+<div class="grid">
     <form id="form1" method="post" action="/home/AddMessage" 
-          enctype="application/x-www-form-urlencoded">
-        <div>
-            <input name="Name" type="text" />
+          enctype="application/x-www-form-urlencoded" class="form">
+        <div class="input">
+            <p>Jméno:</p>
+            <input name="Name" type="text"/>
+        </div>
+        <div class="input">
+            <p>Komentář:</p>
+            <input name="Text" type="text"/>
         </div>
         <div>
-            <input name="Text" type="text" />
-        </div>
-        <div>
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Submit" class="submit"/>
         </div>
     </form>
+    <div>
+        @foreach (Message message in Model)
+            {
+                <div class="message">
+                    <h6>
+                        @message.Name
+                    </h6>
+                    <p>
+                        @message.Text
+                    </p>
+                </div>
+            }
     </div>
+    
+
+</div>

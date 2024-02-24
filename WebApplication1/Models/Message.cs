@@ -4,14 +4,14 @@ namespace WebApplication1.Models;
 
 public class Message
 {
-    public string Name;
-    public string Text;
+    public string Text { get; set; }
+    public string Name { get; set; }
+    
     //public string UserId;
 
     public Message(string text, string name)
     {
         Text = text;
-        //UserId = userId;
         Name = name;
     }
 

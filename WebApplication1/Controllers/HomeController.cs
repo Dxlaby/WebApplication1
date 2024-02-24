@@ -35,13 +35,10 @@ public class HomeController : Controller
 
     public List<Message> GetMessages()
     {
-        var message1 = new Message("Jdsksfsdv  tgks a",  "Pan x");
-        var message2 = new Message("Jdsksfsdv  tgks a", "Pan x");
-        var messages = new List<Message>();
-        messages.Add(message1);
-        messages.Add(message2);
+        string jsonChat = System.IO.File.ReadAllText(@"Database/Chat.json");
+        var list = JsonSerializer.Deserialize<List<Message>>(jsonChat);
 
-        return messages;
+        return list;
     }
         
     [HttpPost]
@@ -52,8 +49,10 @@ public class HomeController : Controller
 
         string jsonChat = System.IO.File.ReadAllText(@"Database/Chat.json");
         var list = JsonSerializer.Deserialize<List<Message>>(jsonChat);
+        list.Reverse();
         list.Add(message);
-        var convertedJson = JsonSerializer.Serialize<List<Message>>(list);
+        list.Reverse();
+        var convertedJson = JsonSerializer.Serialize<IEnumerable<Message>>(list);
         System.IO.File.WriteAllText(@"Database/Chat.json", convertedJson);
         return Redirect("/");
     }
