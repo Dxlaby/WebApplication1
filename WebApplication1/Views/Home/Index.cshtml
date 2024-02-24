@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model List<Message>
+
+<div>
+    @foreach (Message message in Model)
+    {
+        <h6>
+            @message.Name
+        </h6>
+        <p>
+            @message.Text
+        </p>
+    }
+    <form id="form1" method="post" action="/home/AddMessage" 
+          enctype="application/x-www-form-urlencoded">
+        <div>
+            <input name="Name" type="text" />
+        </div>
+        <div>
+            <input name="Text" type="text" />
+        </div>
+        <div>
+            <input type="submit" value="Submit" />
+        </div>
+    </form>
+    </div>
